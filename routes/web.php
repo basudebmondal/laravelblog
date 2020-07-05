@@ -3,6 +3,7 @@
 use GuzzleHttp\Psr7\Request as Psr7Request;
 use Illuminate\Http\Client\Request as ClientRequest;
 use Illuminate\Http\Request;
+use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Request as FacadesRequest;
 use Illuminate\Support\Facades\Route;
 
@@ -29,16 +30,13 @@ Route::get('/user', 'UserController@index');
 
 Route::post('/upload', 'UserController@uploadAvatar');
 
-Route::get('/todos', 'TodoController@index')->name('todo.list');
-
-Route::get('/todos/create', 'TodoController@create');
-
-Route::post('/todos/create', 'TodoController@store');
-
-Route::get('/todos/{todo}/edit', 'TodoController@edit');
-
-Route::patch('/todos/{todo}/update', 'TodoController@update')->name('todo.update');
-
-Route::delete('/todos/{todo}/delete', 'TodoController@destroy')->name('todo.delete');
-
-Route::post('/todos/{todo}/complete', 'TodoController@complete');
+//use auth group middleware
+//Route::middleware('auth')->group( function () { 
+    Route::get('/todos', 'TodoController@index')->name('todo.list');
+    Route::get('/todos/create', 'TodoController@create');
+    Route::post('/todos/create', 'TodoController@store');
+    Route::get('/todos/{todo}/edit', 'TodoController@edit');
+    Route::patch('/todos/{todo}/update', 'TodoController@update')->name('todo.update');
+    Route::delete('/todos/{todo}/delete', 'TodoController@destroy')->name('todo.delete');
+    Route::post('/todos/{todo}/complete', 'TodoController@complete');
+//});

@@ -68,6 +68,11 @@
                                     </form>
                                 </div>
                             </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link" href="{{ route('todo.list') }}">
+                                    Todos<span class="caret"></span>
+                                </a>   
+                            </li>    
                         @endguest
                     </ul>
                 </div>

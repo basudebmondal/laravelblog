@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">{{ __('Todos') }}</div>
                 <x-alert />
-                @if ($todos)
+                @if ($todos->count() > 0)
                     <table class="table table-striped">
                     <thead>
                         <tr>
@@ -38,9 +38,9 @@
                     </tbody>
                     </table>
                     @else
-                    <p>No todos to display</p>
+                    <p style="text-align: justify;!important">No todos to display, create one</p>
                     @endif
-                <hr>
+                
                 <ul class="list-unstyled list-group">
                     <li class="list-group-item">
                         <a href="/todos/create">+ Create new todos</a>

@@ -14,8 +14,17 @@
                         <div class="form-group row">
                             <label for="title" class="col-md-4 col-form-label text-md-right">{{ __('Title') }}</label>
                             <div class="col-md-6">
-                                <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" autofocus>
+                                <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title">
                                 @error('title')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="title" class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
+                            <div class="col-md-6">
+                                <textarea class="form-control @error('desc') is-invalid @enderror" id="desc" name="desc" rows="3"></textarea>
+                                @error('desc')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>

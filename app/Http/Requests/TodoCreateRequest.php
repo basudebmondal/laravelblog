@@ -25,6 +25,8 @@ class TodoCreateRequest extends FormRequest
     {
         return [
             'title' => 'required|unique:todos|max:255',
+            'desc'  => 'required',
+
         ];
     }
 

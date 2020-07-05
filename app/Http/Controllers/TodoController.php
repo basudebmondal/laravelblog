@@ -10,10 +10,20 @@ use Illuminate\Support\Facades\Redirect;
 
 class TodoController extends Controller
 {
+    //use auth middleware
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    
     public function index()
     {
-        $todos = Todo::orderBy('completed')->get();
-        //dd($todos);
+        //dd(auth()->user()->todos());
+        //$userID = auth()->id();
+
+        //dd($userID);
+        $todos = auth()->user()->todos()->orderBy('completed')->get();
         return view('todos.index')->with(['todos' => $todos]);
     }
 
@@ -22,10 +32,17 @@ class TodoController extends Controller
         return view('todos.create');
     }
 
-    public function store(TodoCreateRequest $request)
+    public function store(Request $request)
     {
-        Todo::create($request->all());
-        return redirect()->back()->with('message', 'Todo created successfully');
+        //dd(auth()->user()->todos());
+        //Todo::create($request->all());
+        $request->validate([
+            'title' => 'required',
+            
+        ]);
+        //dd($request->all());
+        auth()->user()->todos()->create($request->all());
+        return redirect(route('todo.list'))->with('message', 'Todo created successfully');
     }
 
     public function edit(Todo $todo)
